@@ -1,0 +1,35 @@
+{% extends "manager/base.html" %}
+{% load static %}
+{% block content %}
+    <div class="container">
+      <!-- User Information Section -->
+      <div id="user-info" class="bg-white p-4 rounded shadow-sm">
+        <p>Loading user information...</p>
+      </div>
+
+      <!-- Message Section -->
+      <div id="message" class="mt-4"></div>
+
+      <!-- User Table -->
+      <table id="usersTable" class="table table-striped">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Role</th>
+            <th>Remaining Leave</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- User rows will be populated here -->
+        </tbody>
+      </table>
+    </div>
+{% endblock content %}
+
+    <!-- Custom Scripts -->
+    {% block script %}
+    <script src="{% static "manager/js/dashboard.js" %}"></script>
+    {% endblock script %}
+  </body>
+</html>

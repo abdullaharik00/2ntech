@@ -1,0 +1,56 @@
+{% extends "manager/base.html" %}
+{% load static %}
+{% block content %}
+    <div class="container mt-4">
+        <h1 class="text-center">Leave Requests Management</h1>
+        
+        {% csrf_token %}
+        <!-- Pending Requests -->
+        <h3>Pending Requests</h3>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>User</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="pending-requests"></tbody>
+        </table>
+
+        <!-- Approved Requests -->
+        <h3>Approved Requests</h3>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>User</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                </tr>
+            </thead>
+            <tbody id="approved-requests"></tbody>
+        </table>
+
+        <!-- Rejected Requests -->
+        <h3>Rejected Requests</h3>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>User</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                </tr>
+            </thead>
+            <tbody id="rejected-requests"></tbody>
+        </table>
+    </div>
+{% endblock content %}
+{% block script %}
+<script src="{% static "manager/js/leave_request_management.js" %}"></script>
+{% endblock script %}
+</body>
+</html>

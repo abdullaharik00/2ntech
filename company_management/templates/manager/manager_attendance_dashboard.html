@@ -1,0 +1,55 @@
+{% extends "manager/base.html" %} {% load static %} {% block content %}
+<div class="container mt-4">
+  <h1 class="text-center mb-4">All Users Attendance</h1>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Username</th>
+        <th>Date</th>
+        <th>Check In Time</th>
+        <th>Check Out Time</th>
+        <th>Late Time</th>
+      </tr>
+    </thead>
+    <tbody id="users-table-body">
+      <!-- User rows will be dynamically populated here -->
+    </tbody>
+  </table>
+</div>
+{% endblock content %} {% block script %}
+<script>
+  function loadUsers() {
+    $.ajax({
+      url: "/api/all-users-info-attendance/",
+      type: "GET",
+      dataType: "json",
+      success: function (response) {
+        const users = response.users;
+        const tableBody = $("#users-table-body");
+
+        tableBody.empty();
+
+        users.forEach((user) => {
+          const row = `
+              <tr>
+                <td>${user.username}</td>
+                <td>${user.date}</td>
+                <td>${user.check_in_time}</td>
+                <td>${user.check_out_time}</td>
+                <td>${user.late_time}</td>
+              </tr>
+            `;
+          tableBody.append(row);
+        });
+      },
+      error: function () {
+        alert("Failed to load user data.");
+      },
+    });
+  }
+
+  $(document).ready(function () {
+    loadUsers();
+  });
+</script>
+{% endblock %}
